@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Список заметок</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .note-item { border-bottom: 1px solid #ccc; padding: 10px 0; display: flex; justify-content: space-between; align-items: center; }
+        .btn { padding: 5px 10px; text-decoration: none; border-radius: 4px; color: white; margin-left: 5px; }
+        .btn-open { background-color: #007bff; }
+        .btn-delete { background-color: #dc3545; }
+    </style>
+</head>
+<body>
+
+    <h1>Мои заметки</h1>
+
+    {% if notes %}
+        <div class="notes-list">
+            {% for note in notes %}
+                <div class="note-item">
+                    <div>
+                        <strong>{{ note.title }}</strong> 
+                        <small style="color: gray;">({{ note.created_at|date:"d.m.Y H:i" }})</small>
+                    </div>
+                    <div>
+                        <a href="#" class="btn btn-open">Открыть</a>
+                        <a href="{% url 'note_delete' note.pk %}" class="btn btn-delete">Удалить</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Заметок пока нет.</p>
+    {% endif %}
+
+</body>
+</html>
