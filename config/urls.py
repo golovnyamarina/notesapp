@@ -1,8 +1,7 @@
-from django.urls import path
-from . import views
+from django.contrib import admin
+from django.urls import path, include
 
 urlpatterns = [
-    path('', views.note_list, name='note_list'),
-    path('<int:pk>/delete/', views.note_delete, name='note_delete'),
-
+    path('admin/', admin.site.urls),
+    path('', include('notes.urls')),
 ]
